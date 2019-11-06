@@ -1,0 +1,9 @@
+#include "stdio.h"
+
+int main()
+{
+	char testc = '!';
+
+	printf("helloworld%c",testc);
+	return 0;
+}
