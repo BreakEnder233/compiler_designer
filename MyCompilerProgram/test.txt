@@ -4,6 +4,6 @@ int main()
 {
 	char testc = '!';
 
-	printf("helloworld%c",testc);
+	printf("hello wo r ld",testc);
 	return 0;
 }

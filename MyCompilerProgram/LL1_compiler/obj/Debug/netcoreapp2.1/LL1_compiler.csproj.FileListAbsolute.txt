@@ -1,0 +1,11 @@
+D:\VS_program\MyCompilerProgram\LL1_compiler\bin\Debug\netcoreapp2.1\LL1_compiler.deps.json
+D:\VS_program\MyCompilerProgram\LL1_compiler\bin\Debug\netcoreapp2.1\LL1_compiler.runtimeconfig.json
+D:\VS_program\MyCompilerProgram\LL1_compiler\bin\Debug\netcoreapp2.1\LL1_compiler.runtimeconfig.dev.json
+D:\VS_program\MyCompilerProgram\LL1_compiler\bin\Debug\netcoreapp2.1\LL1_compiler.dll
+D:\VS_program\MyCompilerProgram\LL1_compiler\bin\Debug\netcoreapp2.1\LL1_compiler.pdb
+D:\VS_program\MyCompilerProgram\LL1_compiler\obj\Debug\netcoreapp2.1\LL1_compiler.csprojAssemblyReference.cache
+D:\VS_program\MyCompilerProgram\LL1_compiler\obj\Debug\netcoreapp2.1\LL1_compiler.csproj.CoreCompileInputs.cache
+D:\VS_program\MyCompilerProgram\LL1_compiler\obj\Debug\netcoreapp2.1\LL1_compiler.AssemblyInfoInputs.cache
+D:\VS_program\MyCompilerProgram\LL1_compiler\obj\Debug\netcoreapp2.1\LL1_compiler.AssemblyInfo.cs
+D:\VS_program\MyCompilerProgram\LL1_compiler\obj\Debug\netcoreapp2.1\LL1_compiler.dll
+D:\VS_program\MyCompilerProgram\LL1_compiler\obj\Debug\netcoreapp2.1\LL1_compiler.pdb

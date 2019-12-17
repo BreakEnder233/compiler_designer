@@ -1,0 +1,10 @@
+#include <cstdio>
+
+int main()
+{
+    
+	int inta = 1+(2*3);
+	int b = a + 2 * a ;
+	printf("helloworld");
+	return 0;
+}
