@@ -16,7 +16,10 @@ namespace word_compiler.Services.Process
                 var output = ruleManager.TryParse(input);
                 if(output.type != SymbolType.ERROR)
                 {
-                    outputs.Add(output);
+                    if (output.type != SymbolType.IGNORE)
+                    {
+                        outputs.Add(output);
+                    }
                     if(input.Length <= output.value.Length)
                     {
                         input = string.Empty;

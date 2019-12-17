@@ -1,47 +1,134 @@
 [
   {
-    "type": 2,
-    "patterns": [
-      "[0-9]+",
-      "\\\"[a-zA-Z_\\s][a-zA-Z0-9_\\s]*\\\""
-
-    ]
-  },
-  {
     "type": 0,
     "patterns": [
-      "[\\s]+",
-      ";",
-      "\\(",
-      "\\)",
-      "\\[",
-      "\\]",
-      "\\<",
-      "\\>",
-      "\\{",
-      "\\}"
+      "\\ ",
+      "\\s+",
+      "/\\*[\\S|\\ |\\s]*\\*/"
     ]
   },
   {
     "type": 1,
     "patterns": [
-      "int",
-      "float",
-      "double",
-      "#include",
-      "return",
-      "printf",
-      "\\+",
-      "-",
-      "\\*",
-      "/",
-      "="
+      "[a-zA-Z]+"
+    ]
+  },
+  {
+    "type": 2,
+    "patterns": [
+      "[0-9]+"
     ]
   },
   {
     "type": 3,
     "patterns": [
-      "[a-zA-Z_][a-zA-Z0-9_]*"
+      "\\["
+    ]
+  },
+  {
+    "type": 4,
+    "patterns": [
+      "\\]"
+    ]
+  },
+  {
+    "type": 5,
+    "patterns": [
+      ";"
+    ]
+  },
+  {
+    "type": 6,
+    "patterns": [
+      "\\{"
+    ]
+  },
+  {
+    "type": 7,
+    "patterns": [
+      "\\}"
+    ]
+  },
+  {
+    "type": 8,
+    "patterns": [
+      "="
+    ]
+  },
+  {
+    "type": 9,
+    "patterns": [
+      "\\("
+    ]
+  },
+  {
+    "type": 10,
+    "patterns": [
+      "\\)"
+    ]
+  },
+  {
+    "type": 11,
+    "patterns": [
+      "[+|-]"
+    ]
+  },
+  {
+    "type": 12,
+    "patterns": [
+      "[*|/]"
+    ]
+  },
+  {
+    "type": 13,
+    "patterns": [
+      "[<|>]",
+      "<=",
+      ">=",
+      "==",
+      "!="
+    ]
+  },
+  {
+    "type": 14,
+    "patterns": [
+      "int"
+    ]
+  },
+  {
+    "type": 15,
+    "patterns": [
+      "void"
+    ]
+  },
+  {
+    "type": 16,
+    "patterns": [
+      "if"
+    ]
+  },
+  {
+    "type": 17,
+    "patterns": [
+      "else"
+    ]
+  },
+  {
+    "type": 18,
+    "patterns": [
+      "return"
+    ]
+  },
+  {
+    "type": 19,
+    "patterns": [
+      "while"
+    ]
+  },
+  {
+    "type": 20,
+    "patterns": [
+      
     ]
   }
 ]

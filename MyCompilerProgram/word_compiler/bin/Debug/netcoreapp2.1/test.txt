@@ -1,10 +1,12 @@
-#include <cstdio>
+/*wd nm d
+
+ aaaaa*/
 
 int main()
 {
     
 	int inta = 1+(2*3);
 	int b = a + 2 * a ;
-	printf("helloworld");
+	printf();
 	return 0;
 }

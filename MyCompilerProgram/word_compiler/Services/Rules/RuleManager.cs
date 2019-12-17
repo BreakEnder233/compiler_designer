@@ -25,44 +25,20 @@ namespace word_compiler.Services.Rules
             string ruleJson = FileManager.ReadFile(rulePath);
             rules = JsonConvert.DeserializeObject<List<Rule>>(ruleJson);
             /*
-            rules = new List<Rule>
+            rules = new List<Rule>();
+            for(int type = 0;type < (int)SymbolType.ERROR; type++)
             {
-                new Rule{
-                    type = SymbolType.CONSTANT,
-                    patterns = new List<string>
-                    {
-                        "[0-9]+"
-                    }
-                },
-                new Rule
+                rules.Add(new Rule
                 {
-                    type = SymbolType.DELEMITER,
-                    patterns = new List<string>
-                    {
-                        @"[\s]+"
+                    type = (SymbolType)type,
+                    patterns = new List<string> { 
+                        "..."
                     }
-                },
-                new Rule
-                {
-                    type = SymbolType.RESERVED,
-                    patterns = new List<string>
-                    {
-                        "int",
-                        "="
-                    }
-                },
-                new Rule
-                {
-                    type = SymbolType.TAG,
-                    patterns = new List<string>
-                    {
-                        "[a-zA-Z_][a-zA-Z0-9_]*"
-                    }
-                }
-            };
+                });
+            }
+            string rulesJson = JsonConvert.SerializeObject(rules,Formatting.Indented);
+            FileManager.WriteFile(rulePath, rulesJson);
             */
-            //string rulesJson = JsonConvert.SerializeObject(rules,Formatting.Indented);
-            //FileManager.WriteFile(rulePath, rulesJson);
         }
         
         public Word TryParse(string input)
@@ -86,7 +62,7 @@ namespace word_compiler.Services.Rules
             }
             if(target.type == SymbolType.ERROR)
             {
-                const int MAX_EXCEPTION_LENGTH = 5;
+                const int MAX_EXCEPTION_LENGTH = 10;
                 if(input.Length < MAX_EXCEPTION_LENGTH)
                 {
                     throw new Exception(input);

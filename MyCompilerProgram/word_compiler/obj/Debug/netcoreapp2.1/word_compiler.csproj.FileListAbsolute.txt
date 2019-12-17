@@ -9,3 +9,13 @@ D:\VS_program\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compi
 D:\VS_program\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.AssemblyInfo.cs
 D:\VS_program\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.dll
 D:\VS_program\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.pdb
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.csprojAssemblyReference.cache
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.AssemblyInfoInputs.cache
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.AssemblyInfo.cs
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.dll
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\obj\Debug\netcoreapp2.1\word_compiler.pdb
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\bin\Debug\netcoreapp2.1\word_compiler.deps.json
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\bin\Debug\netcoreapp2.1\word_compiler.runtimeconfig.json
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\bin\Debug\netcoreapp2.1\word_compiler.runtimeconfig.dev.json
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\bin\Debug\netcoreapp2.1\word_compiler.dll
+D:\Workplace\Compile\Complier\MyCompilerProgram\word_compiler\bin\Debug\netcoreapp2.1\word_compiler.pdb

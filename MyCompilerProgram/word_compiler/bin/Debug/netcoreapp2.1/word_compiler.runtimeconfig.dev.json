@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Arcobaleno\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Arcobaleno\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\或许是小光\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\或许是小光\\.nuget\\packages"
     ]
   }
 }
