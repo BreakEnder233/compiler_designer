@@ -5,13 +5,13 @@ using word_compiler.Services.Rules;
 
 namespace word_compiler.Services.WordContainer.LL1Processors
 {
-    public static class ProgramProc
+    public static class ParamsProc
     {
         public static List<WordType> first = new List<WordType> { };
-        public static void _program(this LL1Processor ll1)
+
+        public static void _params(this LL1Processor ll1)
         {
-            ll1._declarationList();
-            WordContainer.Advance(WordType.HASHTAG);
+            WordContainer.Advance(WordType.VOID);
         }
     }
 }

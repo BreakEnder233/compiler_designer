@@ -11,7 +11,12 @@ namespace word_compiler.Services.WordContainer.LL1Processors
 
         public static void _funDeclaration(this LL1Processor ll1)
         {
-            
+            ll1._typeSpecifier();
+            WordContainer.Advance(WordType.ID);
+            WordContainer.Advance(WordType.BRACKET_L);
+            ll1._params();
+            WordContainer.Advance(WordType.BRACKET_R);
+            ll1._compoundStmt();
         }
     }
 }
