@@ -7,7 +7,10 @@ namespace word_compiler.Services.WordContainer.LL1Processors
 {
     public static class DeclarationProc
     {
-        public static List<WordType> first = new List<WordType> { };
+        public static List<WordType> first = new List<WordType> {
+            WordType.INT,
+            WordType.VOID
+        };
         public static void _declaration(this LL1Processor ll1)
         {
             var offset = 2;

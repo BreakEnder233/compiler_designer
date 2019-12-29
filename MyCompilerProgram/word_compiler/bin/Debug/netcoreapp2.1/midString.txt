@@ -1,3 +1,6 @@
 <INT . int>
 <ID . b>
 <SEMICOLON . ;>
+<INT . int>
+<ID . a>
+<SEMICOLON . ;>

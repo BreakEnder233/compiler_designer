@@ -16,6 +16,7 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             while (DeclarationProc.first.Contains(next))
             {
                 ll1._declaration();
+                next = WordContainer.GetWordType();
             }
         }
     }
