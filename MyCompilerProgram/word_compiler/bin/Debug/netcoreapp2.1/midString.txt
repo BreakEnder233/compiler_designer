@@ -1,0 +1,3 @@
+<INT . int>
+<ID . b>
+<SEMICOLON . ;>

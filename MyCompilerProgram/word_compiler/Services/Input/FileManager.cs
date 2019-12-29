@@ -29,7 +29,7 @@ namespace word_compiler.Services.Input
         {
             if (!File.Exists(path))
             {
-                File.Create(path);
+                File.Create(path).Close();
             }
 
             try

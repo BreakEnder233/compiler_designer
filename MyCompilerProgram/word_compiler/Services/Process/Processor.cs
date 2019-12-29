@@ -14,9 +14,9 @@ namespace word_compiler.Services.Process
             while (!string.IsNullOrWhiteSpace(input))
             {
                 var output = ruleManager.TryParse(input);
-                if(output.type != SymbolType.ERROR)
+                if(output.type != WordType.ERROR)
                 {
-                    if (output.type != SymbolType.IGNORE)
+                    if (output.type != WordType.IGNORE)
                     {
                         outputs.Add(output);
                     }

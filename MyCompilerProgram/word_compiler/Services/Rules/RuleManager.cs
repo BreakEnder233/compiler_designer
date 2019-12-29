@@ -11,8 +11,13 @@ namespace word_compiler.Services.Rules
 {
     public class Word
     {
-        public SymbolType type = SymbolType.ERROR;
+        public WordType type = WordType.ERROR;
         public string value = string.Empty;
+
+        public override string ToString()
+        {
+            return $"<{type.ToString()} . {value}>";
+        }
     }
 
     public class RuleManager
@@ -52,7 +57,7 @@ namespace word_compiler.Services.Rules
                     if (match.Success)
                     {
                         //TODO:匹配规则 存疑
-                        if(target.value.Length < match.Length)
+                        if(target.value.Length <= match.Length)
                         {
                             target.type = rule.type;
                             target.value = match.Value;
@@ -60,7 +65,7 @@ namespace word_compiler.Services.Rules
                     }
                 }
             }
-            if(target.type == SymbolType.ERROR)
+            if(target.type == WordType.ERROR)
             {
                 const int MAX_EXCEPTION_LENGTH = 10;
                 if(input.Length < MAX_EXCEPTION_LENGTH)

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace word_compiler.Services.Rules
 {
-    public enum SymbolType
+    public enum WordType
     {
         IGNORE,
         ID,
@@ -26,12 +26,13 @@ namespace word_compiler.Services.Rules
         ELSE,
         RETURN,
         WHILE,
-        ERROR
+        ERROR,
+        HASHTAG
     }
 
     public class Rule
     {
-        public SymbolType type;
+        public WordType type;
         public List<string> patterns;
     }
 }

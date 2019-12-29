@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using word_compiler.Services.Input;
 using word_compiler.Services.Process;
 using Newtonsoft.Json;
+using word_compiler.Services.WordContainer;
 
 namespace word_compiler
 {
@@ -18,11 +19,22 @@ namespace word_compiler
         {
             
             var output = Processor.WordAnalyse(FileManager.ReadFile("test.txt"));
+            string midString = string.Empty;
             foreach(var v in output)
             {
-                Console.WriteLine($"<{v.type.ToString()} . {v.value}>");
+                midString += v.ToString() + '\n';
+                Console.WriteLine(v.ToString());
             }
-            
+            FileManager.WriteFile("midString.txt", midString);
+
+            WordContainer.InjectData(output);
+
+            Console.WriteLine();
+            Console.Write(WordContainer.GetString());
+
+            var ll1 = new LL1Processor();
+            ll1.StartProcess();
+
             /*
             FileManager.WriteFile("ttttttt.json", JsonConvert.SerializeObject(new Anony{
             data = "aaaa\\\"aaaa"
