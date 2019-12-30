@@ -6,28 +6,25 @@ using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler.Services.WordContainer.LL1Processors
 {
-    public static class DeclarationListProc
+    public static class ParamListProc
     {
-        public static List<WordType> first = new List<WordType>{ };
+        public static List<WordType> first = new List<WordType> { };
 
-        public static GATNode _declarationList(this LL1Processor ll1)
+        public static GATNode _paramList(this LL1Processor ll1)
         {
             var node = new GATNode();
-            node.generator = declarationList;
-            var declaration = ll1._declaration();
-            node.AddChild(declaration);
+            ll1._param();
             var next = WordContainer.GetWordType();
-            while (DeclarationProc.first.Contains(next))
+            while (next == WordType.COMMA)
             {
-                declaration = ll1._declaration();
-                node.AddChild(declaration);
+                WordContainer.Advance(WordType.COMMA);
+                ll1._param();
                 next = WordContainer.GetWordType();
             }
             return node;
         }
-
         #region generators
-        public static void DeclarationList(GATNode node)
+        public static void ParamList(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }

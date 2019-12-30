@@ -7,13 +7,19 @@ namespace word_compiler.Services.WordContainer
 {
     public class BNFException : Exception
     {
-
+        string message;
+        public BNFException()
+        {
+            var index = WordContainer.index;
+            message = $"Exception at index: {index} , word is {WordContainer.GetWord().value}";
+            Console.WriteLine(message);
+        }
     }
 
     public static class WordContainer
     {
         private static List<Word> words;
-        private static int index = 0;
+        public static int index = 0;
 
         public static void InjectData(List<Word> data)
         {
@@ -34,13 +40,14 @@ namespace word_compiler.Services.WordContainer
         }
 
 
-        public static void Advance(WordType expectedWordType = WordType.IGNORE)
+        public static Word Advance(WordType expectedWordType = WordType.IGNORE)
         {
+            var next = GetWord();
             if(expectedWordType == WordType.IGNORE)
             {
                 index++;
             }
-            else if (GetWordType() == expectedWordType)
+            else if (next.type == expectedWordType)
             {
                 index++;
             }
@@ -48,16 +55,21 @@ namespace word_compiler.Services.WordContainer
             {
                 throw new BNFException();
             }
+            return next;
         }
 
         public static Word GetWord(int offset = 0)
         {
+            if(words.Count < index + offset)
+            {
+                return null;
+            }
             return words[index + offset];
         }
 
         public static WordType GetWordType(int offset = 0)
         {
-            return GetWord(offset).type;
+            return GetWord(offset)?.type ?? WordType.IGNORE;
         }
     }
 }

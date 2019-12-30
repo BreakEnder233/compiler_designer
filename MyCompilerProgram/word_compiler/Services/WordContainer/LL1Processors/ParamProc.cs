@@ -6,24 +6,30 @@ using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler.Services.WordContainer.LL1Processors
 {
-    public static class ProgramProc
+    public static class ParamProc
     {
         public static List<WordType> first = new List<WordType> { };
-        public static GATNode _program(this LL1Processor ll1)
+
+        public static GATNode _param(this LL1Processor ll1)
         {
             var node = new GATNode();
-            var declarationList = ll1._declarationList();
-            node.AddChild(declarationList);
-            WordContainer.Advance(WordType.HASHTAG);
+
+            ll1._typeSpecifier();
+            WordContainer.Advance(WordType.ID);
+            var next = WordContainer.GetWordType();
+            if (next == WordType.SQUARE_BRACKET_L)
+            {
+                WordContainer.Advance(WordType.SQUARE_BRACKET_L);
+                WordContainer.Advance(WordType.SQUARE_BRACKET_R);
+            }
             return node;
         }
-
-       
         #region generators
-        public static void program(GATNode node)
+        public static void Param(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }
         #endregion
     }
 }
+

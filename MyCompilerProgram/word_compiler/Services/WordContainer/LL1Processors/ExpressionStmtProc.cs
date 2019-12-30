@@ -6,31 +6,33 @@ using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler.Services.WordContainer.LL1Processors
 {
-    public static class DeclarationListProc
+    public static class ExpressionStmtProc
     {
-        public static List<WordType> first = new List<WordType>{ };
+        public static List<WordType> first = new List<WordType> {
+            WordType.ID,
+            WordType.BRACKET_L,
+            WordType.NUM
+        };
 
-        public static GATNode _declarationList(this LL1Processor ll1)
+        public static GATNode _expressionStmt(this LL1Processor ll1)
         {
             var node = new GATNode();
-            node.generator = declarationList;
-            var declaration = ll1._declaration();
-            node.AddChild(declaration);
             var next = WordContainer.GetWordType();
-            while (DeclarationProc.first.Contains(next))
+            while (ExpressionProc.first.Contains(next))
             {
-                declaration = ll1._declaration();
-                node.AddChild(declaration);
+                ll1._expression();
                 next = WordContainer.GetWordType();
             }
+            WordContainer.Advance(WordType.SEMICOLON);
+
             return node;
         }
-
         #region generators
-        public static void DeclarationList(GATNode node)
+        public static void ExpressionStmt(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }
         #endregion
     }
 }
+

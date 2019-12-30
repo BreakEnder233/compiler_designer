@@ -1,2 +1,28 @@
 int b;
 int a;
+int main(void){
+	b = 1;
+	a = 2;
+	a = a +  b- 2 / 1;
+}
+/*
+int main(void){
+	a = 1 + 2;
+	b = printf();
+	while(a != 3){
+		a = 3 + 2 * 0 - getOne() * 2 + 2 / 2 + a / a;
+	}
+	if(a == 3)
+	return a;
+	else
+	return b;
+}
+
+void printf(int a){
+	printf(a);
+	return;
+}
+
+int getOne(void){
+	return 1;
+}*/

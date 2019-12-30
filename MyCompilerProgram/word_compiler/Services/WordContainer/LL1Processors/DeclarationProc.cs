@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using word_compiler.Services.Rules;
+using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler.Services.WordContainer.LL1Processors
 {
@@ -11,19 +12,24 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             WordType.INT,
             WordType.VOID
         };
-        public static void _declaration(this LL1Processor ll1)
+        public static GATNode _declaration(this LL1Processor ll1)
         {
+            var node = new GATNode();
             var offset = 2;
             switch (WordContainer.GetWordType(offset))
             {
                 case WordType.SEMICOLON:
                     {
-                        ll1._varDeclaration();
+                        var varDeclaration = ll1._varDeclaration();
+                        node.AddChild(varDeclaration);
+                        node.generator = declaration;
                         break;
                     }
                 case WordType.BRACKET_L:
                     {
-                        ll1._funDeclaration();
+                        var funDeclaration = ll1._funDeclaration();
+                        node.AddChild(funDeclaration);
+                        node.generator = declaration;
                         break;
                     }
                 default:
@@ -31,6 +37,20 @@ namespace word_compiler.Services.WordContainer.LL1Processors
                         throw new BNFException();
                     }
             }
+            return node;
         }
+
+       
+        #region generators
+        public static void Declaration1(GATNode node)
+        {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+        }
+        public static void Declaration2(GATNode node)
+        {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+        }
+        #endregion
+
     }
 }

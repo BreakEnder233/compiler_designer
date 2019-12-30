@@ -6,28 +6,24 @@ using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler.Services.WordContainer.LL1Processors
 {
-    public static class DeclarationListProc
+    public static class TermProc
     {
-        public static List<WordType> first = new List<WordType>{ };
-
-        public static GATNode _declarationList(this LL1Processor ll1)
+        public static List<WordType> first = new List<WordType> { };
+        public static GATNode _term(this LL1Processor ll1)
         {
             var node = new GATNode();
-            node.generator = declarationList;
-            var declaration = ll1._declaration();
-            node.AddChild(declaration);
+            ll1._factor();
             var next = WordContainer.GetWordType();
-            while (DeclarationProc.first.Contains(next))
+            while (next == WordType.MULOP)
             {
-                declaration = ll1._declaration();
-                node.AddChild(declaration);
+                WordContainer.Advance(WordType.MULOP);
+                ll1._factor();
                 next = WordContainer.GetWordType();
             }
             return node;
         }
-
         #region generators
-        public static void DeclarationList(GATNode node)
+        public static void Term(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }

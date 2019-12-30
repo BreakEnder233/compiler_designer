@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
 using word_compiler.Services.Input;
+using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler.Services.Rules
 {

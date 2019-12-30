@@ -6,28 +6,24 @@ using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler.Services.WordContainer.LL1Processors
 {
-    public static class DeclarationListProc
+    public static class SimpleExpressionProc
     {
-        public static List<WordType> first = new List<WordType>{ };
-
-        public static GATNode _declarationList(this LL1Processor ll1)
+        public static List<WordType> first = new List<WordType> { };
+        public static GATNode _simpleExpression(this LL1Processor ll1)
         {
             var node = new GATNode();
-            node.generator = declarationList;
-            var declaration = ll1._declaration();
-            node.AddChild(declaration);
+            ll1._additiveExpression();
             var next = WordContainer.GetWordType();
-            while (DeclarationProc.first.Contains(next))
-            {
-                declaration = ll1._declaration();
-                node.AddChild(declaration);
+            while(next == WordType.RELOP)
+            { 
+                WordContainer.Advance(WordType.RELOP);
+                ll1._additiveExpression();
                 next = WordContainer.GetWordType();
             }
             return node;
         }
-
         #region generators
-        public static void DeclarationList(GATNode node)
+        public static void SimpleExpression(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }

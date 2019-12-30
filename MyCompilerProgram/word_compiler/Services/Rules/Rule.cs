@@ -12,6 +12,7 @@ namespace word_compiler.Services.Rules
         SQUARE_BRACKET_L, //[
         SQUARE_BRACKET_R, //]
         SEMICOLON, //;
+        COMMA, //，
         BRACE_L, //{
         BRACE_R, //}
         EQUAL, //=

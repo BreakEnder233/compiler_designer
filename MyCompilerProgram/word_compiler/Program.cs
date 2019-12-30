@@ -20,21 +20,22 @@ namespace word_compiler
             
             var output = Processor.WordAnalyse(FileManager.ReadFile("test.txt"));
             string midString = string.Empty;
+            int index = 0;
             foreach(var v in output)
             {
                 midString += v.ToString() + '\n';
-                Console.WriteLine(v.ToString());
+                Console.WriteLine($"{index++} : {v.ToString()}");
             }
             FileManager.WriteFile("midString.txt", midString);
 
             WordContainer.InjectData(output);
 
-            Console.WriteLine();
-            Console.Write(WordContainer.GetString());
+            //Console.WriteLine();
+            //Console.Write(WordContainer.GetString());
 
             var ll1 = new LL1Processor();
             ll1.StartProcess();
-
+            ll1.StartGenerate();
             /*
             FileManager.WriteFile("ttttttt.json", JsonConvert.SerializeObject(new Anony{
             data = "aaaa\\\"aaaa"
