@@ -18,7 +18,9 @@ namespace word_compiler.Services.WordContainer.LL1Processors
                 case WordType.BRACKET_L:
                     {
                         WordContainer.Advance(WordType.BRACKET_L);
-                        ll1._expression();
+                        var expression = ll1._expression();
+                        node.AddChild(expression);
+                        node.generator = Factor1;
                         WordContainer.Advance(WordType.BRACKET_R);
                         break;
                     }
@@ -27,17 +29,23 @@ namespace word_compiler.Services.WordContainer.LL1Processors
                         offset = 1;
                         if (WordContainer.GetWordType(offset) == WordType.BRACKET_L)
                         {
-                            ll1._call();
+                            var CALL = ll1._call();
+                            node.AddChild(CALL);
+                            node.generator = Factor2;
                         }
                         else
                         {
-                            ll1._var();
+                            var VAR = ll1._var();
+                            node.AddChild(VAR);
+                            node.generator = Factor3;
                         }
                         break;
                     }
                 case WordType.NUM:
                     {
-                        WordContainer.Advance(WordType.NUM);
+                        var num = WordContainer.Advance(WordType.NUM);
+                        node.AddChild(num);
+                        node.generator = Factor4;
                         break;
                     }
                 default:

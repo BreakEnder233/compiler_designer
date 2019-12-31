@@ -27,15 +27,20 @@ namespace word_compiler.Services.WordContainer.LL1Processors
                 {
                     case WordType.SEMICOLON:
                         {
-                            ll1._simpleExpression();
+                            var simpleExpression = ll1._simpleExpression();
+                            node.AddChild(simpleExpression);
+                            node.generator = Expression1;
                             finishSearch = true;
                             break;
                         }
                     case WordType.EQUAL:
                         {
-                            ll1._var();
+                            var VAR = ll1._var();
+                            node.AddChild(VAR);
+                            node.generator = Expression2;
                             WordContainer.Advance(WordType.EQUAL);
-                            ll1._expression();
+                            var expression = ll1._expression();
+                            node.AddChild(expression);
                             finishSearch = true;
                             break;
                         }

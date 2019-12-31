@@ -13,10 +13,16 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _compoundStmt(this LL1Processor ll1)
         {
             var node = new GATNode();
+            node.generator = CompoundStmt;
+
             WordContainer.Advance(WordType.BRACE_L);
-            ll1._localDeclarations();
-            ll1._statementList();
+            var localDeclarations = ll1._localDeclarations();
+            var statementList = ll1._statementList();
             WordContainer.Advance(WordType.BRACE_R);
+
+            node.AddChild(localDeclarations);
+            node.AddChild(statementList);
+
             return node;
         }
         #region generators

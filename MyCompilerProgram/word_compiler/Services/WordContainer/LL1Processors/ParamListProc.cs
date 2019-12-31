@@ -13,12 +13,18 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _paramList(this LL1Processor ll1)
         {
             var node = new GATNode();
-            ll1._param();
+            node.generator = ParamList;
+
+            var param = ll1._param();
+            node.AddChild(param);
+
             var next = WordContainer.GetWordType();
             while (next == WordType.COMMA)
             {
                 WordContainer.Advance(WordType.COMMA);
-                ll1._param();
+
+                param = ll1._param();
+                node.AddChild(param);
                 next = WordContainer.GetWordType();
             }
             return node;

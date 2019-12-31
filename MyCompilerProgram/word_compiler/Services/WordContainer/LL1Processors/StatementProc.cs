@@ -24,7 +24,9 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             var next = WordContainer.GetWordType();
             if (ExpressionStmtProc.first.Contains(next))
             {
-                ll1._expressionStmt();
+                var expressionStmt = ll1._expressionStmt();
+                node.AddChild(expressionStmt);
+                node.generator = Statement1;
                 return node;
             }
             var offset = 0;
@@ -32,22 +34,30 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             {
                 case WordType.BRACE_L:
                     {
-                        ll1._compoundStmt();
+                        var compoundStmt = ll1._compoundStmt();
+                        node.AddChild(compoundStmt);
+                        node.generator = Statement2;
                         break;
                     }
                 case WordType.IF:
                     {
-                        ll1._selectionStmt();
+                        var selectionStmt = ll1._selectionStmt();
+                        node.AddChild(selectionStmt);
+                        node.generator = Statement3;
                         break;
                     }
                 case WordType.WHILE:
                     {
-                        ll1._iterationStmt();
+                        var iterationStmt = ll1._iterationStmt();
+                        node.AddChild(iterationStmt);
+                        node.generator = Statement4;
                         break;
                     }
                 case WordType.RETURN:
                     {
-                        ll1._returnStmt();
+                        var returnStmt = ll1._returnStmt();
+                        node.AddChild(returnStmt);
+                        node.generator = Statement5;
                         break;
                     }
                 default:

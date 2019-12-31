@@ -20,7 +20,9 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             }
             else
             {
-                ll1._paramList();
+                var paramList = ll1._paramList();
+                node.AddChild(paramList);
+                node.generator = Params;
             }
             return node;
         }

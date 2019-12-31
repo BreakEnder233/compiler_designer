@@ -12,12 +12,16 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _additiveExpression(this LL1Processor ll1)
         {
             var node = new GATNode();
-            ll1._term();
+            node.generator = AdditiveExpression;
+            var term1 = ll1._term();
+            node.AddChild(term1);
             var next = WordContainer.GetWordType();
             while (next == WordType.ADDOP)
             {
-                WordContainer.Advance(WordType.ADDOP);
-                ll1._term();
+                var addop = WordContainer.Advance(WordType.ADDOP);
+                node.AddChild(addop);
+                var  term2 = ll1._term();
+                node.AddChild(term2);
                 next = WordContainer.GetWordType();
             }
             return node;

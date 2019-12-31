@@ -13,13 +13,18 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _param(this LL1Processor ll1)
         {
             var node = new GATNode();
+            node.generator = Param;
 
-            ll1._typeSpecifier();
-            WordContainer.Advance(WordType.ID);
+            var typeSpecifier = ll1._typeSpecifier();
+            var id = WordContainer.Advance(WordType.ID);
+            node.AddChild(typeSpecifier);
+            node.AddChild(id);
+
             var next = WordContainer.GetWordType();
             if (next == WordType.SQUARE_BRACKET_L)
             {
                 WordContainer.Advance(WordType.SQUARE_BRACKET_L);
+                //TODO:也许要对数组特别处理
                 WordContainer.Advance(WordType.SQUARE_BRACKET_R);
             }
             return node;

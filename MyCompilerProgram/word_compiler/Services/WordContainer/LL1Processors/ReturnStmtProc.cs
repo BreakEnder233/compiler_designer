@@ -13,11 +13,13 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _returnStmt(this LL1Processor ll1)
         {
             var node = new GATNode();
+            node.generator = ReturnStmt;
             WordContainer.Advance(WordType.RETURN);
             var next = WordContainer.GetWordType();
             if (ExpressionProc.first.Contains(next))
             {
-                ll1._expression();           
+               var expression =  ll1._expression();
+               node.AddChild(expression);
             }
             WordContainer.Advance(WordType.SEMICOLON);
             return node;

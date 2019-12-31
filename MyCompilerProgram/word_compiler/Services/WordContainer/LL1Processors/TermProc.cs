@@ -12,12 +12,16 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _term(this LL1Processor ll1)
         {
             var node = new GATNode();
-            ll1._factor();
+            node.generator = Term;
+            var factor1 = ll1._factor();
+            node.AddChild(factor1);
             var next = WordContainer.GetWordType();
             while (next == WordType.MULOP)
             {
-                WordContainer.Advance(WordType.MULOP);
-                ll1._factor();
+                var mulop = WordContainer.Advance(WordType.MULOP);
+                node.AddChild(mulop);
+                var factor2 = ll1._factor();
+                node.AddChild(factor2);
                 next = WordContainer.GetWordType();
             }
             return node;

@@ -13,13 +13,14 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _iterationStmt(this LL1Processor ll1)
         {
             var node = new GATNode();
-
+            node.generator = IterationStmt;
             WordContainer.Advance(WordType.WHILE);
             WordContainer.Advance(WordType.BRACKET_L);
-            ll1._expression();
+            var expression =  ll1._expression();
+            node.AddChild(expression);
             WordContainer.Advance(WordType.BRACKET_R);
-            ll1._statement();
-       
+            var statement = ll1._statement();
+            node.AddChild(statement);
             return node;
         }
         #region generators

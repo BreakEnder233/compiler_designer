@@ -2,8 +2,6 @@ int b;
 int a;
 int main(void){
 	b = 1;
-	a = 2;
-	a = a +  b- 2 / 1;
 }
 /*
 int main(void){

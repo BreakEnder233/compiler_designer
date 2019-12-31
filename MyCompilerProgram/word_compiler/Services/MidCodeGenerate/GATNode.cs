@@ -37,6 +37,11 @@ namespace word_compiler.Services.MidCodeGenerate
             children.Add(node);
         }
 
+        public int ChildCount()
+        {
+            return children.Count;
+        }
+
         public void enumChild()
         {
             foreach(var child in children)

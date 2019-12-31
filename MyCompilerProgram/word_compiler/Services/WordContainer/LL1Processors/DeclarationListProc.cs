@@ -13,7 +13,7 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _declarationList(this LL1Processor ll1)
         {
             var node = new GATNode();
-            node.generator = declarationList;
+            node.generator = DeclarationList;
             var declaration = ll1._declaration();
             node.AddChild(declaration);
             var next = WordContainer.GetWordType();

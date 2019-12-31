@@ -18,13 +18,29 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             var next = WordContainer.GetWordType(offset);
             while(next == WordType.ID)
             {
-                ll1._varDeclaration();
+                var varDeclaration = ll1._varDeclaration();
+                node.AddChild(varDeclaration);
                 next = WordContainer.GetWordType(offset);
             }
+
+            if(node.ChildCount() == 0)
+            {
+                node.generator = LocalDeclarations2;
+            }
+            else
+            {
+                node.generator = LocalDeclarations1;
+            }
+
             return node;
         }
         #region generators
-        public static void LocalDeclarations(GATNode node)
+        public static void LocalDeclarations1(GATNode node)
+        {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+        }
+
+        public static void LocalDeclarations2(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }

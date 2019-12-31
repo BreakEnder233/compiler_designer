@@ -13,16 +13,23 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _selectionStmt(this LL1Processor ll1)
         {
             var node = new GATNode();
+            node.generator = SelectionStmt;
+
             WordContainer.Advance(WordType.IF);
             WordContainer.Advance(WordType.BRACKET_L);
-            ll1._expression();
+            var expression = ll1._expression();
             WordContainer.Advance(WordType.BRACKET_R);
-            ll1._statement();
+            var statement = ll1._statement();
+
+            node.AddChild(expression);
+            node.AddChild(statement);
+
             var next = WordContainer.GetWordType();
             if (next == WordType.ELSE)
             {
                 WordContainer.Advance(WordType.ELSE);
-                ll1._statement();
+                var elseStatement = ll1._statement();
+                node.AddChild(elseStatement);
             }
             return node;
         }

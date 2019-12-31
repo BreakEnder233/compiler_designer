@@ -12,12 +12,15 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _var(this LL1Processor ll1)
         {
             var node = new GATNode();
-            WordContainer.Advance(WordType.ID);
+            node.generator = Var;
+            var id = WordContainer.Advance(WordType.ID);
+            node.AddChild(id);
             var next = WordContainer.GetWordType();
             if (next == WordType.SQUARE_BRACKET_L)
             {
                 WordContainer.Advance(WordType.SQUARE_BRACKET_L);
-                ll1._expression();
+                var expression = ll1._expression();
+                node.AddChild(expression);
                 WordContainer.Advance(WordType.SQUARE_BRACKET_R);
             }
             return node;

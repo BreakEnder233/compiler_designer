@@ -19,7 +19,6 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             node.AddChild(typeSpecifier);
             node.AddChild(id);
 
-
             if(WordContainer.GetWordType() == WordType.SQUARE_BRACKET_L)
             {
                 WordContainer.Advance(WordType.SQUARE_BRACKET_L);

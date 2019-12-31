@@ -13,12 +13,19 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _funDeclaration(this LL1Processor ll1)
         {
             var node = new GATNode();
-            ll1._typeSpecifier();
-            WordContainer.Advance(WordType.ID);
+            var typeSpecifier = ll1._typeSpecifier();
+            var id = WordContainer.Advance(WordType.ID);
             WordContainer.Advance(WordType.BRACKET_L);
-            ll1._params();
+            var param = ll1._params();
             WordContainer.Advance(WordType.BRACKET_R);
-            ll1._compoundStmt();
+            var compoundStmt = ll1._compoundStmt();
+
+            node.generator = FunDeclaration;
+            node.AddChild(typeSpecifier);
+            node.AddChild(id);
+            node.AddChild(param);
+            node.AddChild(compoundStmt);
+
             return node;
         }
         #region generators

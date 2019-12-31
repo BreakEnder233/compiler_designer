@@ -15,12 +15,26 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             var next = WordContainer.GetWordType();
             if (ArgListProc.first.Contains(next))
             {
-                ll1._argList();           
-            }             
+                var argList = ll1._argList();
+                node.AddChild(argList);
+            }
+
+            if (node.ChildCount() == 0)
+            {
+                node.generator = Args2;
+            }
+            else
+            {
+                node.generator = Args1;
+            }
             return node;
         }
         #region generators
-        public static void Args(GATNode node)
+        public static void Args1(GATNode node)
+        {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+        }
+        public static void Args2(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }

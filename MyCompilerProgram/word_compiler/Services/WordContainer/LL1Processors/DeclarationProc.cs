@@ -22,14 +22,14 @@ namespace word_compiler.Services.WordContainer.LL1Processors
                     {
                         var varDeclaration = ll1._varDeclaration();
                         node.AddChild(varDeclaration);
-                        node.generator = declaration;
+                        node.generator = Declaration1;
                         break;
                     }
                 case WordType.BRACKET_L:
                     {
                         var funDeclaration = ll1._funDeclaration();
                         node.AddChild(funDeclaration);
-                        node.generator = declaration;
+                        node.generator = Declaration2;
                         break;
                     }
                 default:

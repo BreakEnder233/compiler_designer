@@ -17,10 +17,12 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static GATNode _expressionStmt(this LL1Processor ll1)
         {
             var node = new GATNode();
+            node.generator = ExpressionStmt;
             var next = WordContainer.GetWordType();
             while (ExpressionProc.first.Contains(next))
             {
-                ll1._expression();
+                var expression = ll1._expression();
+                node.AddChild(expression);
                 next = WordContainer.GetWordType();
             }
             WordContainer.Advance(WordType.SEMICOLON);
