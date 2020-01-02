@@ -2,6 +2,12 @@
 <ID . a>
 <SEMICOLON . ;>
 <INT . int>
+<ID . b>
+<SQUARE_BRACKET_L . [>
+<NUM . 4>
+<SQUARE_BRACKET_R . ]>
+<SEMICOLON . ;>
+<INT . int>
 <ID . gcd>
 <BRACKET_L . (>
 <INT . int>

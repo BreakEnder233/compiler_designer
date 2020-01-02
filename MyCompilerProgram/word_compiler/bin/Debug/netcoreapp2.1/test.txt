@@ -3,6 +3,8 @@ Algorithm to compute gcd. */
 
 int a;
 
+int b[4];
+
 int gcd (int u, int v)
 {
 	if (v == 0) return u ;
