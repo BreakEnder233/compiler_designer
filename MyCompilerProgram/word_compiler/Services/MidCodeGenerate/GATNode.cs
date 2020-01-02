@@ -8,15 +8,49 @@ namespace word_compiler.Services.MidCodeGenerate
 {
     public class GATNode//Grammer Analyze Tree Node
     {
-        public string name;
+        public string name="";
         private GATNode parent;
         private Dictionary<string, string> properties = new Dictionary<string, string>();
         private List<GATNode> children = new List<GATNode>();
         public Action<GATNode> generator = (node) => { };
 
+        #region PredefinedNode
+
+        public static GATNode LabelNode()
+        {
+            var node = new GATNode();
+            node.generator = (n) =>
+            {
+                var labelName = Guid.NewGuid().ToString();
+                node.SetProperty(("LabelName"), labelName);
+                var pos = CodeGenerator.GetNextQuad();
+                CodeGenerator.AddLabel(labelName, pos);
+                n.SetProperty("CodeLine", pos.ToString());
+            };
+            return node;
+        }
+
+        public static GATNode CodeNode()
+        {
+            var node = new GATNode();
+            node.generator = (n) =>
+            {
+                n.SetProperty("CodeLine", CodeGenerator.GetNextQuad().ToString());
+                CodeGenerator.AddCode();
+            };
+            return node;
+        }
+
+        #endregion
+
         public void SetParent(GATNode node)
         {
             parent = node;
+        }
+
+        public GATNode GetParent()
+        {
+            return parent;
         }
         public void SetProperty(string name, string value)
         {
@@ -28,6 +62,11 @@ namespace word_compiler.Services.MidCodeGenerate
             {
                 properties.Add(name, value);
             }
+        }
+
+        public string GetProperty(string name)
+        {
+            return properties[name];
         }
 
         public void AddChild(GATNode node)
@@ -49,6 +88,11 @@ namespace word_compiler.Services.MidCodeGenerate
                 child.enumChild();
             }
             generator(this);
+        }
+
+        public GATNode getChild(int num)
+        {
+            return children[num];
         }
 
 

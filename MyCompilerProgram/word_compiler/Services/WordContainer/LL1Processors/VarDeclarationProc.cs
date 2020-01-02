@@ -34,6 +34,20 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static void varDeclaration(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            string type, id;
+
+            type = node.getChild(0).GetProperty("value");
+            id = node.getChild(1).GetProperty("value");
+            node.SetProperty("value", id);
+            node.SetProperty("type", type);
+            GATNode process=node.GetParent();
+
+            while (process.name == "")
+            {
+                process = process.GetParent();
+            }
+            CodeGenerator.AddSymbol(node.GetProperty("value"), process.name, null);
         }
         #endregion
     }

@@ -29,6 +29,8 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static void Var(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+            GATNode IDnode = node.getChild(0);
+            node.SetProperty("value", IDnode.GetProperty("value"));
         }
         #endregion
     }

@@ -42,11 +42,13 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         #region generators
         public static void typeSpecifier1(GATNode node)
         {
+            node.SetProperty("value", "INT");
             Console.WriteLine("typeSpecifier1");
         }
 
         public static void typeSpecifier2(GATNode node)
         {
+            node.SetProperty("value", "VOID");
             Console.WriteLine("typeSpecifier2");
         }
         #endregion

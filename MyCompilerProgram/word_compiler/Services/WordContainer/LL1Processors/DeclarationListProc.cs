@@ -28,7 +28,7 @@ namespace word_compiler.Services.WordContainer.LL1Processors
 
         #region generators
         public static void DeclarationList(GATNode node)
-        {
+        {   
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
         }
         #endregion

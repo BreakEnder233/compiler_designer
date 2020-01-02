@@ -58,6 +58,7 @@ namespace word_compiler.Services.Rules
                     if (match.Success)
                     {
                         //TODO:匹配规则 存疑
+                        //注释等短距离贪心除外
                         if(target.value.Length <= match.Length)
                         {
                             target.type = rule.type;

@@ -1,26 +1,20 @@
-int b;
-int a;
-int main(void){
-	b = 1;
-}
-/*
-int main(void){
-	a = 1 + 2;
-	b = printf();
-	while(a != 3){
-		a = 3 + 2 * 0 - getOne() * 2 + 2 / 2 + a / a;
-	}
-	if(a == 3)
-	return a;
-	else
-	return b;
+/* A program to perform Euclid's
+Algorithm to compute gcd. */
+
+int gcd (int u, int v)
+{
+	if (v == 0) return u ;
+	else return gcd(v,u-u/v*v);
+
+	/* u-u/v*v == u mod v */
+
 }
 
-void printf(int a){
-	printf(a);
-	return;
+void main(void)
+{
+	int x;
+	int y;
+	x = input();
+	y = input();
+	output(gcd(x,y));
 }
-
-int getOne(void){
-	return 1;
-}*/

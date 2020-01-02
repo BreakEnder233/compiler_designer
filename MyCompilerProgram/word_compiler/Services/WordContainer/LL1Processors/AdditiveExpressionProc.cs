@@ -30,7 +30,35 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         #region generators
         public static void AdditiveExpression(GATNode node)
         {
+            int childnum = node.ChildCount();
+            string addop="";
+            GATNode child;
+
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            child = node.getChild(0);
+            node.SetProperty("value", child.GetProperty("value"));
+            for (int i = 1; i < childnum; i++)
+            {
+                child = node.getChild(i);
+                if (child.GetProperty("value") == "+")
+                {
+                    addop = "+";
+                }
+                else if (child.GetProperty("value") == "-")
+                {
+                    addop = "-";
+                }
+                else//有待解决如何记录结果
+                {
+                    //Console.WriteLine(node.GetProperty("value") + addop + child.GetProperty("value"));
+                    CodeGenerator.AddCode(addop, node.GetProperty("value"), child.GetProperty("value"), "T" + CodeGenerator.tempnum);
+                    Console.WriteLine(addop + " " + node.GetProperty("value") + " " + child.GetProperty("value") + " " + "T" + CodeGenerator.tempnum);
+                    node.SetProperty("value", "T" + CodeGenerator.tempnum);
+                    CodeGenerator.tempnum++;
+
+                }
+            }
         }
         #endregion
     }

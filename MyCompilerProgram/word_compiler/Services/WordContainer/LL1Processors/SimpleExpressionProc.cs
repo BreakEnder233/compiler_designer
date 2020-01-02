@@ -29,7 +29,49 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         #region generators
         public static void SimpleExpression(GATNode node)
         {
+            int childnum = node.ChildCount();
+            string relop="";
+            GATNode child;
+
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            child = node.getChild(0);
+            node.SetProperty("value", child.GetProperty("value"));
+            for (int i = 1; i < childnum; i++)
+            {
+                child = node.getChild(i);
+                if (child.GetProperty("value") == "<=")
+                {
+                    relop = "<=";
+                }
+                else if (child.GetProperty("value") == ">=")
+                {
+                    relop = ">=";
+                }
+                else if (child.GetProperty("value") == "==")
+                {
+                    relop = "==";
+                }
+                else if (child.GetProperty("value") == "!=")
+                {
+                    relop = "!=";
+                }
+                else if (child.GetProperty("value") == "<")
+                {
+                    relop = "<";
+                }
+                else if (child.GetProperty("value") == ">")
+                {
+                    relop = ">";
+                }
+                else//有待解决如何记录结果
+                {
+                    CodeGenerator.AddCode(relop, node.GetProperty("value"), child.GetProperty("value"), "T" + CodeGenerator.tempnum);
+                    Console.WriteLine(relop + " " + node.GetProperty("value") + " " + child.GetProperty("value") + " " + "T" + CodeGenerator.tempnum);
+                    node.SetProperty("value", "T" + CodeGenerator.tempnum);
+                    CodeGenerator.tempnum++;
+                }
+            }
         }
         #endregion
     }

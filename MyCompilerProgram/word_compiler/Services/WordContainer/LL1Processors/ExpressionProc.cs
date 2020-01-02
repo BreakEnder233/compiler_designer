@@ -54,7 +54,9 @@ namespace word_compiler.Services.WordContainer.LL1Processors
                             depth--;
                             if(depth < 0)
                             {
-                                ll1._simpleExpression();
+                                var simpleExpression = ll1._simpleExpression();
+                                node.AddChild(simpleExpression);
+                                node.generator = Expression1;
                                 finishSearch = true;
                             }
                             break;
@@ -74,11 +76,28 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         #region generators
         public static void Expression1(GATNode node)
         {
+            //simple expression
+            GATNode child;
+
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            child = node.getChild(0);
+            node.SetProperty("value", child.GetProperty("value"));
         }
         public static void Expression2(GATNode node)
         {
+            //var = expression
+            GATNode left,right;
+
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            left = node.getChild(0);
+            right = node.getChild(1);
+
+            node.SetProperty("value", left.GetProperty("value"));
+
+            CodeGenerator.AddCode("=", right.GetProperty("value"), null, left.GetProperty("value"));
+            Console.WriteLine("=" + " "+ right.GetProperty("value") + " " + "\t" + " " + left.GetProperty("value"));
         }
         #endregion
     }

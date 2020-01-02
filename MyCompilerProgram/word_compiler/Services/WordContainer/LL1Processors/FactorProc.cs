@@ -59,18 +59,24 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static void Factor1(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+            node.SetProperty("value", node.getChild(0).GetProperty("value"));
         }
         public static void Factor2(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+            node.SetProperty("value", node.getChild(0).GetProperty("value"));
         }
         public static void Factor3(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+            node.SetProperty("value", node.getChild(0).GetProperty("value"));
+
         }
         public static void Factor4(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+            node.SetProperty("value", node.getChild(0).GetProperty("value"));
+
         }
         #endregion
     }

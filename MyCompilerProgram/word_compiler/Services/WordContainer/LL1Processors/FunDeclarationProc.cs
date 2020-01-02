@@ -19,19 +19,24 @@ namespace word_compiler.Services.WordContainer.LL1Processors
             var param = ll1._params();
             WordContainer.Advance(WordType.BRACKET_R);
             var compoundStmt = ll1._compoundStmt();
-
+            //
+            node.name = id.value;
+            //
             node.generator = FunDeclaration;
-            node.AddChild(typeSpecifier);
-            node.AddChild(id);
-            node.AddChild(param);
-            node.AddChild(compoundStmt);
+            node.AddChild(typeSpecifier);//0
+            node.AddChild(id);//1
+            node.AddChild(param);//2
+            node.AddChild(GATNode.LabelNode());//3
+            node.AddChild(compoundStmt);//4
 
             return node;
         }
         #region generators
         public static void FunDeclaration(GATNode node)
         {
+            //TODO:支持参数表，栈帧处理
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+            CodeGenerator.AddLabel(node.getChild(1).GetProperty("value"), Int32.Parse(node.getChild(3).GetProperty("CodeLine")));
         }
         #endregion
     }

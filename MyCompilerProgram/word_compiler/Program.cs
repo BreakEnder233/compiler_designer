@@ -6,6 +6,7 @@ using word_compiler.Services.Input;
 using word_compiler.Services.Process;
 using Newtonsoft.Json;
 using word_compiler.Services.WordContainer;
+using word_compiler.Services.MidCodeGenerate;
 
 namespace word_compiler
 {
@@ -36,6 +37,8 @@ namespace word_compiler
             var ll1 = new LL1Processor();
             ll1.StartProcess();
             ll1.StartGenerate();
+
+            Console.Write(CodeGenerator.CodeToString());
             /*
             FileManager.WriteFile("ttttttt.json", JsonConvert.SerializeObject(new Anony{
             data = "aaaa\\\"aaaa"

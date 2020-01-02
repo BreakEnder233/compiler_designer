@@ -23,6 +23,8 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static void program(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            //CodeGenerator.AddLabel("global", 0);
         }
         #endregion
     }

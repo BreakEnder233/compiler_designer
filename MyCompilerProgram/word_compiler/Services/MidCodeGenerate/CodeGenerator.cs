@@ -11,7 +11,8 @@ namespace word_compiler.Services.MidCodeGenerate
 
         public override string ToString()
         {
-            return $"{op}\t{arg1}\t{arg2}\t{result}";
+            string placeHolder = "#";
+            return $"{(string.IsNullOrWhiteSpace(op)?placeHolder:op)}\t{(string.IsNullOrWhiteSpace(arg1) ? placeHolder : arg1)}\t{(string.IsNullOrWhiteSpace(arg2) ? placeHolder : arg2)}\t{(string.IsNullOrWhiteSpace(result) ? placeHolder : result)}";
         }
     }
     public class Symbol
@@ -36,6 +37,8 @@ namespace word_compiler.Services.MidCodeGenerate
         private static List<Label> labels = new List<Label>();
         private static List<BackPatchTask> backPatchTasks = new List<BackPatchTask>();
 
+        public static int tempnum=1;
+
         #region Code
         public static int AddCode(string op = null, string arg1 = null, string arg2 = null, string result = null)
         {
@@ -47,6 +50,18 @@ namespace word_compiler.Services.MidCodeGenerate
                 result = result
             });
             return codes.Count - 1;
+        }
+
+        public static int SetCode(int line, string op = null, string arg1 = null, string arg2 = null, string result = null)
+        {
+            codes[line] = new Code
+            {
+                op = op,
+                arg1 = arg1,
+                arg2 = arg2,
+                result = result
+            };
+            return line;
         }
 
         /// <summary>
@@ -61,10 +76,11 @@ namespace word_compiler.Services.MidCodeGenerate
         public static string CodeToString()
         {
             string codeString = string.Empty;
-            int index = 100;
+            codeString += $"INDEX\t:\tOP\tARG1\tARG2\tRESULT\n";
+            int index = 0;
             foreach(var code in codes)
             {
-                codeString += $"{index++} : {code.ToString()}";
+                codeString += $"{index++}\t:\t{code.ToString()}\n";
             }
             return codeString;
         }
@@ -113,11 +129,13 @@ namespace word_compiler.Services.MidCodeGenerate
         /// </summary>
         /// <param name="name"></param>
         /// <param name="index"></param>
-        public static void PutLabel(string name, int index)
+        public static string PutLabel(string name, int index)
         {
             if (labels.Exists((t) => t.name == name))
             {
-                codes[index].result = labels.First((l) => l.name == name).position.ToString();
+                string line = labels.First((l) => l.name == name).position.ToString();
+                codes[index].result = line;
+                return line;
             }
             else
             {
@@ -140,7 +158,13 @@ namespace word_compiler.Services.MidCodeGenerate
                     task.backPatchIndex.Add(index);
                 }
             }
+            return "-";
 
+        }
+
+        public static int GetLabelLength()
+        {
+            return labels.Count();
         }
 
         #endregion

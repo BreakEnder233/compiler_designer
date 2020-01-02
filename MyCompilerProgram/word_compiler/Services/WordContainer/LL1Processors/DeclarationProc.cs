@@ -16,6 +16,10 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         {
             var node = new GATNode();
             var offset = 2;
+            //
+            node.name = "global";
+            CodeGenerator.AddLabel("global", 0);
+            //
             switch (WordContainer.GetWordType(offset))
             {
                 case WordType.SEMICOLON:

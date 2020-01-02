@@ -29,7 +29,33 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         #region generators
         public static void Term(GATNode node)
         {
+            int childnum = node.ChildCount();
+            string mulop="";
+            GATNode child;
+
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            child = node.getChild(0);
+            node.SetProperty("value", child.GetProperty("value"));
+            for (int i = 1; i < childnum; i++)
+            {
+                child = node.getChild(i);
+                if (child.GetProperty("value") == "*")
+                {
+                    mulop = "*";
+                }
+                else if(child.GetProperty("value")=="/")
+                {
+                    mulop = "/";
+                }
+                else//有待解决如何记录结果
+                {
+                    CodeGenerator.AddCode(mulop, node.GetProperty("value"), child.GetProperty("value"), "T" + CodeGenerator.tempnum);
+                    Console.WriteLine(mulop + " " + node.GetProperty("value") + " " + child.GetProperty("value") + " " + "T" + CodeGenerator.tempnum);
+                    node.SetProperty("value", "T" + CodeGenerator.tempnum);
+                    CodeGenerator.tempnum++;
+                }
+            }
         }
         #endregion
     }
