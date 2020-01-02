@@ -28,6 +28,23 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         public static void ReturnStmt(GATNode node)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
+            if(node.ChildCount() == 0)
+            {
+                CodeGenerator.AddCode("ret","#","#","#");
+            }
+            else
+            {
+                var tmpNode = "T" + CodeGenerator.tempnum++;
+                CodeGenerator.AddCode("+", "EBP", "12", tmpNode);
+                CodeGenerator.AddCode("*", tmpNode, "4", tmpNode);
+                CodeGenerator.AddCode("+", "EBP", tmpNode, tmpNode);
+                CodeGenerator.AddCode("+", tmpNode, "16", tmpNode);
+                CodeGenerator.AddCode("[", tmpNode, "#", tmpNode);
+                CodeGenerator.AddCode("[", tmpNode, "#", tmpNode);
+                CodeGenerator.AddCode("]", node.getChild(0).GetProperty("value"), "#", tmpNode);
+                CodeGenerator.AddCode("ret", "#", "#", "#");
+            }
         }
         #endregion
     }

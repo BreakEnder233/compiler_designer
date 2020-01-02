@@ -34,9 +34,30 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         #region generators
         public static void FunDeclaration(GATNode node)
         {
-            //TODO:支持参数表，栈帧处理
+            //支持参数表
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
             CodeGenerator.AddLabel(node.getChild(1).GetProperty("value"), Int32.Parse(node.getChild(3).GetProperty("CodeLine")));
+
+            var funcName = node.getChild(1).GetProperty("value");
+            var returnType = node.getChild(0).GetProperty("value");
+            var paramCount = node.getChild(2).ChildCount() == 0 ? 0 : node.getChild(2).getChild(0).ChildCount();
+            var paramName = new List<string>();
+            if(paramCount != 0)
+            {
+                var paramList = node.getChild(2).getChild(0);
+                for (int i = 0; i < paramList.ChildCount(); i++)
+                {
+                    var param = paramList.getChild(i);
+                    paramName.Add(param.getChild(1).GetProperty("value"));
+                }
+            }
+            CodeGenerator.AddFunction(new FunctionStackFrame
+            {
+                name = funcName,
+                returnType = returnType,
+                parameterCount = paramCount,
+                parameterName = paramName
+            });
         }
         #endregion
     }

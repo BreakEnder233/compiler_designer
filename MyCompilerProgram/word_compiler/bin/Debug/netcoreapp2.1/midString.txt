@@ -1,4 +1,7 @@
 <INT . int>
+<ID . a>
+<SEMICOLON . ;>
+<INT . int>
 <ID . gcd>
 <BRACKET_L . (>
 <INT . int>

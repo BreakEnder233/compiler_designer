@@ -24,6 +24,11 @@ namespace word_compiler.Services.WordContainer
             {
                 root.enumChild();
             }
+
+            if (CodeGenerator.isClosedCycle())
+            {
+                Console.WriteLine("Code Generation is not a closed cycle!");
+            }
         }
 
 

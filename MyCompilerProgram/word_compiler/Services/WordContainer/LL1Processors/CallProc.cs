@@ -26,11 +26,30 @@ namespace word_compiler.Services.WordContainer.LL1Processors
         {
             //TODO:支持参数表，栈帧处理
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName);
+
             var processName = node.getChild(0).GetProperty("value");
-            var jmpLine = CodeGenerator.AddCode("j", "#", "#", "#");
-            CodeGenerator.PutLabel(processName, jmpLine);
-            node.SetProperty("value", "func");
+
+            var args = node.getChild(1);
+            var argNum = args.ChildCount();
+            if(argNum == 0)
+            {
+                CodeGenerator.CallFunction(processName, new List<string>());
+                node.SetProperty("value", "void");
+            }
+            else
+            {
+                var paramList = new List<string>();
+                var argList = args.getChild(0);
+                for(int i = 0; i < argList.ChildCount(); i++)
+                {
+                    paramList.Add(argList.getChild(i).GetProperty("value"));
+                }
+                var retNode = CodeGenerator.CallFunction(processName, paramList);
+                node.SetProperty("value", retNode);
+            }
+
+
         }
-        #endregion
+#endregion
     }
 }

@@ -39,6 +39,8 @@ namespace word_compiler
             ll1.StartGenerate();
 
             Console.Write(CodeGenerator.CodeToString());
+            Console.Write(CodeGenerator.SymbolToString());
+            Console.Write(CodeGenerator.LabelToString());
             /*
             FileManager.WriteFile("ttttttt.json", JsonConvert.SerializeObject(new Anony{
             data = "aaaa\\\"aaaa"

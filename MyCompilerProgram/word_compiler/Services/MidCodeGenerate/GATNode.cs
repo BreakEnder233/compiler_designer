@@ -41,6 +41,17 @@ namespace word_compiler.Services.MidCodeGenerate
             return node;
         }
 
+        public static GATNode FuncBeginNode()
+        {
+            var node = new GATNode();
+            node.generator = (n) =>
+            {
+                CodeGenerator.AddCode("push","#","#","ebp");
+                CodeGenerator.AddCode("=", "esp", "#", "ebp");
+            };
+            return node;
+        }
+
         #endregion
 
         public void SetParent(GATNode node)
